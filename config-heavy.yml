@@ -1,0 +1,48 @@
+language: es
+pipeline:
+  - name: "SpacyNLP"
+    model: "es_core_news_lg"
+    case_sensitive: False
+  - name: "SpacyTokenizer"
+    "intent_tokenization_flag": False
+  - name: "SpacyFeaturizer"
+    "pooling": "mean"
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: CRFEntityExtractor
+  - name: EntitySynonymMapper
+  - name: DIETClassifier
+    epochs: 100
+    num_transformer_layers: 4
+    transformer_size: 256
+    use_masked_language_model: True
+    drop_rate: 0.25
+    weight_sparsity: 0.7
+    batch_size: [64, 256]
+    embedding_dimension: 30
+    hidden_layer_sizes:
+      text: [512, 128]
+  - name: ResponseSelector
+    epochs: 100
+    retrieval_intent: faq
+  - name: ResponseSelector
+    epochs: 100
+    retrieval_intent: chichat
+  # - name: FallBackClassifier
+  #   threshold: 0.7
+
+
+policies:
+  - name: MemoizationPolicy
+  - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 100
