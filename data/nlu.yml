@@ -1,92 +1,275 @@
 version: "2.0"
-
 nlu:
-- intent: greet
+- intent: saludar
   examples: |
-    - hey
-    - hello
+    - Hola
+    - Hola que tal
+    - como van por ahi
+    - Como esta?
+    - Buenos dias
+    - Buenas tardes
+    - Buenas noches
+    - que tal
+    - que ondas
+    - como va todo?
+    - Hola amigo
+    - Hola amiga
+    - Me pueden ayudar por favor
+    - necesito informacion
+    - hola
+    - buenas tardes
+    - hola que tal
+    - buenos dias
+    - en que le puedo servir?
+    - digame
+    - todo bien
+    - Buenas tardes, quiero hacer un pago
+    - Hello!!!
+    - Hi
+    - buen día
+    - tuanis
+    - Mae
+    - Compita
+    - Buen dia
+    - buena tarde
+    - Hola, quiero hablar con alguien
     - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-
-- intent: goodbye
+    - Todo bien?
+    - Yes
+    - hla
+    - hol
+    - Buenos días
+    - Hello
+    - mae... todo bien
+    - Todo bien
+    - hola que tal?
+    - buenas
+    - que me queda
+    - hello
+    - que tal_
+    - que ondas_
+- intent: afirmar
   examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-
-- intent: affirm
-  examples: |
+    - si
+    - si claro
+    - por supuesto
+    - con mucho gusto
+    - sip
+    - pura vida
+    - por favor
+    - si claro con mucho gusto
+    - gracias si
+    - si dale
+    - si pero rapido
+    - Claro que sí
+    - Sí, claro
+    - Sí
+    - Si
+    - si?
+    - bueno
+    - diay si
+    - si puedo en este momento
+    - si por favor
+    - Pura vida!!!
+    - si en este momento puedo
+    - siiiiiiiii
+    - creo que si
+    - ok
+    - Tengo poco tiempo pero dígame
+    - creo q si
     - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
-- intent: deny
+    - correcto
+    - Estoy en trabajo, pero dígame rápido
+    - con gusto
+    - si puedo
+    - hagale a ver
+    - de acuerdo
+    - por supuesto adelante
+- intent: negar
   examples: |
+    - No
+    - en este momento no tengo tiempo
+    - me pueden contactar más tarde
+    - no molesten
+    - luego
+    - en este momento no
+    - adios
+    - le dije que no tengo tiempo
+    - molestando desde temprano
+    - nop
+    - no en este momento
+    - me puede escribir en unos 20 minutos?
+    - mas tarde le digo
     - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
-- intent: mood_great
+    - no tengo tiempo en este momeno
+    - no tengo tiempo en este momento deje de joder
+    - estoy trabajando
+    - lo siento no puedo hablar ahora
+    - en este momento no puedo
+- intent: deudor_informa_fecha
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
+    - seguramente [la otra semana](fecha_promesa_confirmada)
+    - Si de acuerdo para [ese dia](fecha_promesa_confirmada)
+    - exacto para [ese dia](fecha_promesa_confirmada)
+    - para [ese mismo dia](fecha_promesa_confirmada)
+    - Voy a pagar [mañana](fecha_promesa_confirmada)
+    - posiblemente [mañana](fecha_promesa_confirmada)
+    - me comprometo a pagar [el 30 de este mes](fecha_promesa_confirmada)
+    - [más tarde](fecha_promesa_confirmada)
+    - [en la tarde](fecha_promesa_confirmada)
+    - el pago lo voy a realizar [la próxima semana](fecha_promesa_confirmada)
+    - [hoy](fecha_promesa_confirmada)
+    - [tal vez la otra semana](fecha_promesa_confirmada)
+    - [el 30 de este mes](fecha_promesa_confirmada)
+    - seguramente [el dia de manana](fecha_promesa_confirmada) ...
+    - a fin [de mes](fecha_promesa_confirmada)
+    - [mañana](fecha_promesa_confirmada)
+    - en [el almuerzo paso](fecha_promesa_confirmada)
+    - [manana](fecha_promesa_confirmada)
+    - [dentro de 15 dias](fecha_promesa_confirmada)
+    - [el 30 de este mes](fecha_promesa_confirmada)
+    - [mañana](fecha_promesa_confirmada) pago
+    - [el domingo](fecha_promesa_confirmada)
+    - mi esposa deposita [mañana](fecha_promesa_confirmada) en la tarde
+    - La situación está muy difícil, pero sin falta [el 30](fecha_promesa_confirmada) les deposito
+    - Para esa se me complica, puedo hacer pago [el 30](fecha_promesa_confirmada)
+    - a [finales de mes](fecha_promesa_confirmada)
+    - hasta [final de mes](fecha_promesa_confirmada)
+    - podría ser en [esta misma semana](fecha_promesa_confirmada)
+    - podría [el 30](fecha_promesa_confirmada)
+    - hasta [el dia 30](fecha_promesa_confirmada) puedo hacerlo
+    - puede ser que [hoy o puede que mañana](fecha_promesa_confirmada)
+    - no lo se [a lo mejor mañana](fecha_promesa_confirmada)
+    - ya [hoy] (fecha_promesa_confirmada)
+    - podría pagar [la otra semana](fecha_promesa_confirmada)?
+    - dentro [de unos días](fecha_promesa_confirmada)
+    - Sí estamos [para ese día](fecha_promesa_confirmada)
+    - Sí [para ese día](fecha_promesa_confirmada)
+    - Sip estamos [para ese día](fecha_promesa_confirmada)
+    - si [hoy](fecha_promesa_confirmada)
+    - si [para hoy](fecha_promesa_confirmada)
+    - no yo [si puedo hoy](fecha_promesa_confirmada)
+    - yo creo que [si puedo hoy](fecha_promesa_confirmada)
+    - voy a pagar [el domingo](fecha_promesa_confirmada)
+    - creo que [el dia de hoy](fecha_promesa_confirmada)
+- intent: deudor_informa_lugar
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
+    - Voy a pagar en [Servimas](lugar_pago)
+    - [por transferencia en el nacional](lugar_pago)
+    - [por transferencia bac](lugar_pago)
+    - [por transferencia banco de costa rica](lugar_pago)
+    - [por transferencia davivienda](lugar_pago)
+    - [BN](lugar_pago)
+    - [transferencia por BCR](lugar_pago)
+    - Voy a pagar por [SINPE Movil](lugar_pago)
+    - [Money] Center(lugar_pago)
+    - [SINPE movil](lugar_pago)
+    - [Banco Nacional](lugar_pago)
+    - [transferencia](lugar_pago)
+    - [por transferencia](lugar_pago)
+    - [por transferencia BN](lugar_pago)
+    - [por transferencia Banco Nacional](lugar_pago)
+    - [en el super](lugar_pago)
+    - donde [el chino](lugar_pago)
+    - mejor siempre en [ServiMas](lugar_pago)
+    - voy a pagar en [Tucan](lugar_pago)
+    - creo que en el [Banco Nacional](lugar_pago)
+    - [en la pulpe](lugar_pago)
+    - en [bac](lugar_pago)
+    - En el [Money Center](lugar_pago)
+    - [en Davivienda](lugar_pago)
+    - [en walmart](lugar_pago)
+    - [wallmart](lugar_pago)
+    - en [el banco nacional](lugar_pago)
+    - Con el [Bac](lugar_pago)
+    - [Banco Nacional](lugar_pago) mejor
+    - ah no no me serviria más si es en [sinpe](lugar_pago)
+    - en [servimas](lugar_pago) pero ya no existe
+    - Creo que me queda mejor pagarlo en el [banco nacional](lugar_pago)
+    - en [el chino](lugar_pago)
+    - [bn](lugar_pago)
+- intent: chitchat/fuera_de_rango
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - quiero ordenar comida
+    - que opinas del deficit fiscal
+    - que rico comer una hamburguesa
+    - quien es el presidente de Estados Unidos
+    - no me interesa ayudarle
+- intent: chitchat/consulta
+  examples: |
+    - quiero chatear con alguien
+    - Quiero hablar con alguien
+    - Para realizar una consulta
+    - no hay una forma de llegar a un acuerdo?
+    - Buenos días, tengo una consulta
+    - cual pago
+    - cual
+    - tengo una duda
+    - Alguien me puede ayudar?
+    - se puede pasar la fecha?
+    - se podrá para fin de mes?
+    - Cuanto era el monto?
+    - Cuanto era el monto a pagar?
+    - Puedo pagar en la siguiente quince?
+    - Pero eso no fue lo que acorde con el gestor
+    - que es Gestionadora de Creditos?
+    - quiero pagar mi deuda
+    - cual deuda?
+    - Cual pago?
+    - Cuanto tengo que pagar?
+    - sigo esperando el estado de cuenta
+    - Este mes no voy a poder
+    - me podrían dar tiempo
+    - no tengo esa plata
+    - no jodan
+    - no puedo pagar esa cantidad
+    - por que tanto? no puedo pagar eso
+    - pero la promesa era de 40000
+    - pero la promesa no era por ese monto
+- intent: pago_ya_efectuado
+  examples: |
+    - ya mi esposa depositó
+    - ya pagué
+    - Ya se realizo el deposito
+    - Ya se realizo el deposito no molesten
+    - Ya lo realice
+    - de verdad no hay forma con ustedes son demasiado idiotas y no revisan
+    - No se porque me llega este mensaje estoy al dia
+- intent: deudor_solicita_enviar_medios_pago
+  examples: |
+    - perfecto gracias, tienen la cuenta para pagar
+    - cual sería cuenta para depositar?
+    - si por ultima ves, quiero saber cual es cuenta bn
+    - si por ultima ves, quiero saber cual es cuenta
+    - ocupo nuevamente la cuenta y cédula jurídica para depositarle.
+    - Tiene sinpe móvil, es más fácil
+    - si en sinpe solo opcupo el numero
+    - ocupo la cuenta
+    - ok, en que puntos de pago puedo pagar
+    - en cuales puntos ademas de esos puedo pagar
+    - otros puntos de pagos
+    - otros medios de pago
+    - ademas de esos donde mas puedo pagar
+    - si pero no tengo la cuenta para realizar la transferencia.
+    - adonde puedo pagar?
+    - ya me canse, no puedo realizar el pago si no tengo la cuenta para realizar el pago.
+    - no existe otro lugar?
+    - si pero no tengo la cuenta para depositar
+    - pero si puedo, solo necesito la cuenta IBAN
+    - necesito la cuenta IBAN
+    - donde mas puedo pagar?
+- intent: deudor_solicita_pago_parcial
+  examples: |
+    - puedo pagar [25 mil](nuevo_monto_promesa) es lo unico que tengo
+    - podría pagar [la mitad](nuevo_monto_promesa) [hoy](fecha_promesa_confirmada) y la otra  a fin [de mes](fecha_promesa_confirmada)?
+    - solo tengo [15](nuevo_monto_promesa)
+    - solo tengo [15 mil](nuevo_monto_promesa)
+    - creo que [mañana puedo una parte](nuevo_monto_promesa) y [la otra el 27](fecha_promesa_confirmada)
+    - no tengo todo el monto, solo [la mitad](nuevo_monto_promesa)
+    - No tengo esa cantidad, puedo pagar [40 mil](nuevo_monto_promesa)
+    - No tengo esa cantidad puedo pagar [40](nuevo_monto_promesa)
+    - claro, yo puedo pagar [30mil](nuevo_monto_promesa) pero más de eso no puedo
+    - entonces si me aceptan [30mil](nuevo_monto_promesa)
+    - Queee!!, yo no puedo pagar esa cantidad, si puedo pagar [30](nuevo_monto_promesa)
+    - Queee!!, yo no puedo pagar esa cantidad, si puedo pagar [30 mil](nuevo_monto_promesa)
+    - puedo pagar [25 rojos](nuevo_monto_promesa)

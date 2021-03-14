@@ -1,30 +1,230 @@
 version: "2.0"
-
 stories:
-
-- story: happy path
+- story: confirmar promesa de pago ruta feliz 1
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - active_loop: promesa_pago_form
+  - active_loop: null
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_informa_fecha
+  - action: utter_ask_lugar_pago
+  - intent: deudor_informa_lugar
+  - slot_was_set:
+    - resultado: confirmada
+  - action: utter_informar_pago_fecha
+  - action: action_grabar_resultado
+- story: confirmar fecha ruta feliz 2
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - active_loop: promesa_pago_form
+  - active_loop: null
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_informa_fecha
+    entities:
+    - fecha_promesa_confirmada: mañana
+  - slot_was_set:
+    - fecha_promesa_confirmada: mañana
+  - action: utter_ask_lugar_pago
+  - intent: deudor_informa_lugar
+    entities:
+    - lugar_pago: Tranferencia Banco Nacional
+  - slot_was_set:
+    - lugar_pago: Tranferencia Banco Nacional
+  - slot_was_set:
+    - resultado: confirmada
+  - action: utter_informar_pago_fecha
+  - action: action_grabar_resultado
+- story: confirmar fecha ruta feliz 3
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_informa_fecha
+    entities:
+    - fecha_promesa_confirmada: el dia de manana
+  - slot_was_set:
+    - fecha_promesa_confirmada: el dia de manana
+  - action: utter_ask_lugar_pago
+  - intent: deudor_informa_lugar
+    entities:
+    - lugar_pago: transferencia por BCR
+  - slot_was_set:
+    - lugar_pago: transferencia por BCR
+  - slot_was_set:
+    - resultado: confirmada
+  - action: utter_informar_pago_fecha
+  - action: action_grabar_resultado
+- story: confirmar fecha ruta feliz 4
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - intent: deudor_informa_fecha
+    entities:
+    - fecha_promesa_confirmada: el 30 de este mes
+  - slot_was_set:
+    - fecha_promesa_confirmada: el 30 de este mes
+  - action: utter_ask_lugar_pago
+  - intent: deudor_informa_lugar
+    entities:
+    - lugar_pago: transferencia por BCR
+  - slot_was_set:
+    - lugar_pago: transferencia por BCR
+  - slot_was_set:
+    - resultado: confirmada
+  - action: utter_informar_pago_fecha
+  - action: action_grabar_resultado
+- story: confirmar promesa ruta feliz 5
+  steps:
+  - slot_was_set:
+    - monto_promesa: 15000.0
+  - slot_was_set:
+    - nombre_deudor: CARLOS ALBERTO MARENCO ARANA
+  - slot_was_set:
+    - institucion_deudor: SERVIVALORES
+  - slot_was_set:
+    - fecha_promesa: 10 DE FEBRERO DEL 2021
+  - slot_was_set:
+    - fecha_promesa_confirmada: null
+  - slot_was_set:
+    - lugar_pago: null
+  - slot_was_set:
+    - num_operacion: CR69598-SV
+  - slot_was_set:
+    - ppr_codigo: 3168026
+  - slot_was_set:
+    - resultado: sinconfirmar
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_informa_fecha
+    entities:
+    - fecha_promesa_confirmada: la otra semana
+    - fecha_promesa_confirmada: otra semana
+  - slot_was_set:
+    - fecha_promesa_confirmada: otra semana
+  - action: utter_ask_lugar_pago
+  - intent: deudor_informa_lugar
+    entities:
+    - lugar_pago: Banco Nacional
+    - lugar_pago: Banco Nacional
+  - slot_was_set:
+    - lugar_pago: Banco Nacional
+  - action: utter_informar_pago_fecha
+  - action: action_grabar_resultado
+- story: Usuario no tiene tiempo
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: negar
+  - slot_was_set:
+    - resultado: notienetiempo
+  - action: utter_informar_promesa_no
+  - action: action_grabar_resultado
+- story: Usuario no tiene tiempo 2
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: negar
+  - slot_was_set:
+    - resultado: notienetiempo
+  - action: utter_informar_promesa_no
+  - action: action_grabar_resultado
+- story: Deudor solicita pago parcial 2
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_solicita_pago_parcial
+    entities:
+    - nuevo_monto_promesa: 25 mil
+  - slot_was_set:
+    - nuevo_monto_promesa: 25 mil
+  - slot_was_set:
+    - resultado: deudorquierenegociar
+  - action: utter_deudor_solicita_pago_parcial
+- story: Deudor solicita pago parcial 3
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_solicita_pago_parcial
+    entities:
+    - nuevo_monto_promesa: 20 mil
+  - slot_was_set:
+    - nuevo_monto_promesa: 20 mil
+  - slot_was_set:
+    - resultado: deudorquierenegociar
+  - action: utter_deudor_solicita_pago_parcial
+- story: Deudor solicita medios de pago dentro de la forma de la promesa de pago
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - active_loop: promesa_pago_form
+  - slot_was_set:
+    - requested_slot: fecha_promesa_confirmada
+  - slot_was_set:
+    - requested_slot: lugar_pago
+  - intent: deudor_solicita_enviar_medios_pago
+  - slot_was_set:
+    - resultado: confirmada
+  - action: utter_enviar_medios_pago
+  - action: promesa_pago_form
+  - active_loop: null
+- story: Deudor solicita medios de pago antes de confirmar
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: deudor_informa_fecha
+  - action: utter_ask_lugar_pago
+  - intent: deudor_solicita_enviar_medios_pago
+  - action: utter_enviar_medios_pago
+  - intent: deudor_informa_lugar
+  - action: utter_informar_pago_fecha
+  - slot_was_set:
+    - resultado: confirmada
+  - action: action_grabar_resultado
+- story: Deudor Informa pago realizado
+  steps:
+  - intent: saludar
+  - action: utter_saludar
+  - intent: afirmar
+  - action: utter_informar_promesa_si
+  - action: promesa_pago_form
+  - action: utter_ask_fecha_promesa_confirmada
+  - intent: pago_ya_efectuado
+  - slot_was_set:
+    - resultado: pagorealizado
+  - action: utter_pago_ya_efectuado
+  - action: action_grabar_resultado
