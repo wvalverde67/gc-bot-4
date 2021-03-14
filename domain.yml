@@ -5,36 +5,170 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- greet:
+- deudor_informa_fecha:
+    use_entities:
+    - fecha_promesa_confirmada
+- saludar:
+    use_entities: []
+- negar:
+    use_entities: []
+- afirmar:
+    use_entities: []
+- deudor_informa_lugar:
+    use_entities:
+    - lugar_pago
+- chitchat:
+    use_entities: []
+- deudor_solicita_enviar_medios_pago:
     use_entities: true
-- goodbye:
+- pago_ya_efectuado:
     use_entities: true
-- affirm:
-    use_entities: true
-- deny:
-    use_entities: true
-- mood_great:
-    use_entities: true
-- mood_unhappy:
-    use_entities: true
-- bot_challenge:
-    use_entities: true
-entities: []
-slots: {}
+- deudor_solicita_pago_parcial:
+    use_entities: 
+    - nuevo_monto_promesa
+entities:
+- fecha_promesa_confirmada
+- lugar_pago
+- nuevo_monto_promesa
+slots:
+  fecha_promesa:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  fecha_promesa_confirmada:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  institucion_deudor:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  lugar_pago:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  monto_promesa:
+    type: Float
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  nombre_deudor:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  nuevo_monto_promesa:
+    type: Float
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  num_operacion:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  requested_slot:
+    type: Text
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  ppr_codigo:
+    type: Float
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  resultado:
+    type: Categorical
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    values:
+    - confirmada
+    - pagorealizado
+    - deudorquierenegociar
+    - sinconfirmar
+    - notienetiempo
 responses:
-  utter_greet:
-  - text: Hey! How are you?
-  utter_cheer_up:
-  - image: https://i.imgur.com/nGF1K8f.jpg
-    text: 'Here is something to cheer you up:'
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
-actions: []
-forms: {}
+  utter_saludar:
+  - text: |
+      Hola, soy un asistente virtual y me gustaria confirmar una promesa de pago con Gestionadora de Creditos, una cuenta que usted tenia con {institucion_deudor}.
+      Tiene disponibilidad para confirmar el pago en este momento?
+  utter_informar_promesa_si:
+  - text: |
+      Gracias, tenemos registrada a una promesa de pago a nombre de {nombre_deudor}
+      por un monto de: {monto_promesa} colones 
+      para el dia: {fecha_promesa}
+  utter_informar_promesa_no:
+  - text: |
+      Entendemos que no pueda en este momento. 
+      La promesa de pago esta a nombre {nombre_deudor}. En otro momento lo estaremos contactando. Gracias.
+  utter_informar_pago_fecha:
+  - text: |
+      Gracias por confirmar su promesa de pago. Los datos son los siguientes:
+      - Fecha Promesa: {fecha_promesa_confirmada}
+      - Monto: {monto_promesa}
+      - Lugar de pago: {lugar_pago}
+  utter_ask_fecha_promesa_confirmada:
+  - text: |
+      Cuando va a realizar el pago por {monto_promesa} colones?
+  utter_ask_lugar_pago:
+  - text: |
+      Donde va a realizar el pago? por ejemplo: Servimas, Banco Nacional, transferencia?
+  utter_pago_ya_efectuado:
+  - text: |
+      Es importante que envie el comprobante de pago.
+      Puede enviar el comprobante por correo electronico o WhatsApp.
+  utter_enviar_medios_pago:
+  - text: |
+      En el siguiente link puede encontrar todas las formas de pago: http://gestionadora.com/pagos/cr
+
+
+      Me indica por favor el lugar para realizar el pago? 
+  utter_deudor_solicita_pago_parcial:
+  - text: |
+      Hemos tomado nota de su solicitud. Un gestor de cobro se estara comunicando con su persona.
+  utter_chitchat/fuera_de_rango:
+  - text: |
+      Recuerda por favor que soy un asistente virtual para Gestion de Cobros.
+      Lo que dices esta fuera de mi rango de accion. Continuamos?
+  utter_chitchat/consulta:
+  - text: Ante su inquietud, puede dejar su numero de celular y la mejor hora para llamarlo y un gestor de cobros lo estara localizando.
+
+actions:
+- action_session_start
+- promesa_pago_form
+- action_grabar_resultado
+forms:
+  promesa_pago_form:
+    fecha_promesa_confirmada:
+    - entity: fecha_promesa_confirmada
+      intent: deudor_informa_fecha
+      type: from_entity
+    lugar_pago:
+    - entity: lugar_pago
+      intent: deudor_informa_lugar
+      type: from_entity
+    resultado:
+    - intent: deudor_informa_lugar
+      type: from_intent
+      value: confirmada
+    - intent: negar
+      type: from_intent
+      value: notienetiempo
+    - intent: pago_ya_efectuado
+      type: from_intent
+      value: pagorealizado
+    - intent: deudor_solicita_pago_parcial
+      type: from_intent
+      value: deudorquierenegociar
 e2e_actions: []
