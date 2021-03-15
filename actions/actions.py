@@ -5,6 +5,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from typing import Any, Text, Dict, List, Type, Union
 from rasa_sdk.events import SlotSet, SessionStarted, ActionExecuted, EventType
 
+
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -22,7 +23,6 @@ class PromesaPagoFormValidator(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate cuisine value."""
-
         return {
             "fecha_promesa_confirmada": slot_value,
             "lugar_pago":slot_value
