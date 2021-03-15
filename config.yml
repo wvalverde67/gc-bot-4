@@ -1,8 +1,6 @@
-language: es
+language: es_core_news_lg
 pipeline:
   - name: "SpacyNLP"
-    model: "es_core_news_lg"
-    case_sensitive: False
   - name: "SpacyTokenizer"
     "intent_tokenization_flag": True
   - name: "SpacyFeaturizer"

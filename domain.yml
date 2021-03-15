@@ -32,63 +32,63 @@ entities:
 - nuevo_monto_promesa
 slots:
   fecha_promesa:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   fecha_promesa_confirmada:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   institucion_deudor:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   lugar_pago:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   monto_promesa:
-    type: Float
+    type: float
     initial_value: null
     auto_fill: true
     influence_conversation: false
     max_value: 1000000000.0
     min_value: 0.0
   nombre_deudor:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   nuevo_monto_promesa:
-    type: Float
+    type: float
     initial_value: null
     auto_fill: true
     influence_conversation: false
     max_value: 1000000000.0
     min_value: 0.0
   num_operacion:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: false
   requested_slot:
-    type: Text
+    type: text
     initial_value: null
     auto_fill: true
     influence_conversation: true
   ppr_codigo:
-    type: Float
+    type: float
     initial_value: null
     auto_fill: true
     influence_conversation: false
     max_value: 1000000000.0
     min_value: 0.0
   resultado:
-    type: Categorical
+    type: categorical
     initial_value: null
     auto_fill: true
     influence_conversation: false
