@@ -52,6 +52,7 @@ nlu:
   examples: |
     - si
     - si claro
+    - claro que si
     - por supuesto
     - con mucho gusto
     - sip
