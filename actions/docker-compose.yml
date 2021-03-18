@@ -3,7 +3,7 @@ services:
   gc-bot-action-server:
     build: .
     # tag it with the registry of microk8s
-    image: localhost:33000/gc-bot-rasa-server:2.4.0
+    image: localhost:32000/gc-bot-action-server:0.0.1
     expose:
       - "5055"
 

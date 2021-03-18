@@ -22,7 +22,7 @@ rasa:
     # token Rasa accepts as authentication token from other Rasa services
     token: "EbzFMdhFxnw/r0EwrTg5oRlnecMQ80M5QBD8PTZs2wg="
     # tag refers to the Rasa image tag
-    name: localhost:33000/gc-bot-rasa-server
+    # name: localhost:32000/deployment-workshop-bot-2-action-server
     tag: "2.4.0-full"
 rabbitmq:
     # rabbitmq settings of the subchart
