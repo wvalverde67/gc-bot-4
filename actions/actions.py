@@ -37,7 +37,7 @@ class ActionSessionStart(Action):
         """Trae del WebHook los datos de la promesa de pago."""
 
         
-        response = requests.get('http://10.123.7.161/webApi/api/obtenerpromesa')
+        response = requests.get('http://10.123.0.25/webApi/api/obtenerpromesa')
         promesa_pago = json.loads(response.content)
         slots = []
         slots.append(SlotSet(key="monto_promesa", value=promesa_pago['monto_promesa']))
@@ -106,7 +106,7 @@ class GrabarResultadoAction(Action):
             'resultado' : Resultado
         }
         header = {"content-type": "application/json"}
-        resultado = requests.post('http://10.123.7.161/webApi/api/resultadopromesa', data=json.dumps(payload), headers=header, verify=False)
+        resultado = requests.post('http://10.123.0.25/webApi/api/resultadopromesa', data=json.dumps(payload), headers=header, verify=False)
         dispatcher.utter_message(text="\n\n Muchas Gracias, hasta pronto!!!")
         return []
 
