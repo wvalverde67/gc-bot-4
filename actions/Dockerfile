@@ -1,7 +1,7 @@
 # https://hub.docker.com/r/rasa/rasa-sdk/tags
-FROM rasa/rasa-sdk:2.4.0
+FROM rasa/rasa-sdk:2.3.1
 
-COPY actions /app/actions
+COPY actions.py /app/actions
 
 USER root
 RUN python -m pip install --upgrade pip
