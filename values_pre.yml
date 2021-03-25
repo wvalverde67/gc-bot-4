@@ -40,7 +40,7 @@ global:
         password: "GeaJX1teuhVOBzIOCe+/XfcALeRokgyyAPYplZKU8BE="
 
 # custom action server
-app:
+#app:
     # from microk8s build-in registry
-    name: "localhost:32000/gc-bot-action-server"
-    tag: "2.4.0-full"
+#    name: "localhost:32000/gc-bot-action-server"
+#	    tag: "2.4.0-full"
