@@ -1,46 +1,7 @@
 debugMode: true
 
-nginx:
-  service:
-    # connect LoadBalancer directly to VMs' internal IP
-    # You get this value with: $ hostname -I
-    externalIPs: [10.123.4.88]
-rasax:
-    # initialUser is the user which is created upon the initial start of Rasa X
-    initialUser:
-        # password for the Rasa X user
-        password: "workshop"
-    # passwordSalt Rasa X uses to salt the user passwords
-    passwordSalt: "jBaSqzWHm39L1R84HReRDiWzuqFdMwAsOcgYtMc3elU="
-    # token Rasa X accepts as authentication token from other Rasa services
-    token: "qDB/qMsQATsHLCsg/z5C6ZNNEGozGSzBO0ic0CLg8UA="
-    # jwtSecret which is used to sign the jwtTokens of the users
-    jwtSecret: "KkP7N4Is2kcGm4mc1G7XcXSMPmVDciwjB5A15xvaDcw="
-    # tag refers to the Rasa X image tag
-    tag: "0.37.1"
-rasa:
-    # token Rasa accepts as authentication token from other Rasa services
-    token: "EbzFMdhFxnw/r0EwrTg5oRlnecMQ80M5QBD8PTZs2wg="
-    # tag refers to the Rasa image tag
-#    name: localhost:33000/gc-bot-action-server
-    tag: "2.4.0-full"
-rabbitmq:
-    # rabbitmq settings of the subchart
-    rabbitmq:
-        # password which is used for the authentication
-        password: "A5kBzSYF5uO6YHG3Fhlj7njP9aNq"
-global:
-    # postgresql: global settings of the postgresql subchart
-    postgresql:
-        # postgresqlPassword is the password which is used when the postgresqlUsername equals "postgres"
-        postgresqlPassword: "NkRRAQoPaC12qWj0KWbpDSNK3DNWTdYAkdUNeo0KxXQ="
-    # redis: global settings of the postgresql subchart
-    redis:
-        # password to use in case there no external secret was provided
-        password: "GeaJX1teuhVOBzIOCe+/XfcALeRokgyyAPYplZKU8BE="
-
 # custom action server
 app:
     # from microk8s build-in registry
-    name: "localhost:32000/gc-bot-action-server"
-    tag: "2.4.0-full"
+    name: "gc-bot-action-server"
+    tag: "1"
