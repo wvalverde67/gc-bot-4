@@ -107,6 +107,6 @@ class GrabarResultadoAction(Action):
         }
         header = {"content-type": "application/json"}
         resultado = requests.post('http://10.123.0.25/webApi/api/resultadopromesa', data=json.dumps(payload), headers=header, verify=False)
-        dispatcher.utter_message(text="\n\n Muchas Gracias, hasta pronto!!!")
+        dispatcher.utter_message(text="\n\n Muchas Gracias por usar nuestros servicios!!!")
         return []
 
