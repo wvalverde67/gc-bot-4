@@ -1,16 +1,20 @@
-# https://hub.docker.com/r/rasa/rasa-sdk/tags
-FROM rasa/rasa:2.4.0-full
+# Extend the official Rasa SDK image
+FROM rasa/rasa-sdk:2.4.1
 
-COPY actions /app/actions
+# Use subdirectory as working directory
+WORKDIR /app
 
+# Copy any additional custom requirements, if necessary (uncomment next line)
+# COPY actions/requirements-actions.txt ./
+
+# Change back to root user to install dependencies
 USER root
 
-RUN pip3 install wheel
-RUN pip3 install -U pip setuptools wheel
-RUN pip3 install -U spacy
-RUN python3 -m spacy download es_core_news_lg
+# Install extra requirements for actions code, if necessary (uncomment next line)
+# RUN pip install -r requirements-actions.txt
 
+# Copy actions folder to working directory
+COPY ./actions /app/actions
+
+# By best practices, don't run the code with root user
 USER 1001
-CMD ["start", "--actions", "actions"]
-
-

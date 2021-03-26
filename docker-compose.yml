@@ -1,9 +1,15 @@
-version: '3.4'
+version: '3.0'
 services:
-  gc-bot-action-server:
-    build: .
-    # tag it with the registry of microk8s
-    image: localhost:32000/gc-bot-action-server:2.4.0-full
-    expose:
-      - "5055"
+  rasa:
+    image: rasa/rasa:2.4.3-full
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    command:
+      - run
+  app:
+    image: wvalverde67/gc-bot-4:1
+    expose: 
+      - 5055
 
